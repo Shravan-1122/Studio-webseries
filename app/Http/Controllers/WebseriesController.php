@@ -40,9 +40,9 @@ class WebseriesController extends Controller
         $webSeries->theme_id = $validatedData['theme_id'];
         $webSeries->status = 'active';
         $webSeries->active = 1;
-        $name = $request->session()->get('name');
-        $webSeries->created_by = $name;
-        $webSeries->updated_by = $name;
+        $id = $request->session()->get('id');        
+        $webSeries->created_by = $id;
+        $webSeries->updated_by = $id;
         $webSeries->save();
         foreach ($validatedData['artist_ids'] as $artistId) {
             $webArtist = new WebArtist();
@@ -73,8 +73,8 @@ class WebseriesController extends Controller
         $webSeries->title = $validatedData['title'];
         $webSeries->description = $validatedData['description'];
         $webSeries->theme_id = $validatedData['theme_id'];
-        $name = $request->session()->get('name');
-        $webSeries->updated_by = $name;
+        $id = $request->session()->get('id');
+        $webSeries->updated_by = $id;
         $webSeries->save();
         $webSeries->artists()->sync($validatedData['artist_ids']);
         return redirect("weblist")->with('success', 'Web series updated successfully');

@@ -22,4 +22,13 @@ class Season extends Model
     {
         return $this->belongsToMany(Artist::class, 'seasonartist', 'season_id', 'artist_id');
     }
+    public function createdByUser()
+    {
+        return $this->belongsTo(User::class, 'created_by');
+    }
+
+    public function updatedByUser()
+    {
+        return $this->belongsTo(User::class, 'updated_by');
+    }
 }
