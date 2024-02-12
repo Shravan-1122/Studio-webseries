@@ -15,8 +15,7 @@ class ThemeController extends Controller
         return view('Theme/themelist', $data);
     }
     public function add()
-    {
-       
+    {       
         return view('Theme/addtheme');
     }
     public function addtheme(Request $request)
@@ -24,8 +23,7 @@ class ThemeController extends Controller
         $storeData = $request->validate([
             'title' => 'required|max:255',
             'description' => 'required',
-        ]);
-    
+        ]);    
         $theme = Theme::create($storeData);
         if ($theme) {
             return redirect("themelist")->with('success', 'Artist added successfully');
@@ -47,14 +45,12 @@ public function update(Request $request, $id)
         'description' => 'required',
     ]);
     $theme->update($validatedData);
-
     return redirect()->route('theme.list')->with('success', 'Theme updated successfully');
 }
 
 public function delete($id)
 {
-    $artist = Theme::find($id);
-    
+    $artist = Theme::find($id);    
     if ($artist) {
         $artist->delete();
         return redirect()->route('theme.list')->with('success', 'Artist deleted successfully.');
