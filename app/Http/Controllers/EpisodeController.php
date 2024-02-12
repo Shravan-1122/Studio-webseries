@@ -49,10 +49,12 @@ class EpisodeController extends Controller
         $webSeries->episode_title = $validatedData['title'];
         $webSeries->description = $validatedData['description'];
         $seasonid = session()->get('seasonid');
-        $name = $request->session()->get('name');
+       
         $webSeries->season_id = $seasonid;
-        $webSeries->created_by = $name;
-        $webSeries->updated_by = $name;
+        $id = $request->session()->get('id');
+        $webSeries->updated_by = $id;
+        $webSeries->created_by = $id;
+       
         $webSeries->save();
         foreach ($validatedData['artist_ids'] as $artistId) {
             $seasonArtist = new EpisodeArtist();
@@ -85,8 +87,8 @@ class EpisodeController extends Controller
         $webSeries = Episode::findOrFail($id);
         $webSeries->episode_title = $validatedData['title'];
         $webSeries->description = $validatedData['description'];
-        $name = $request->session()->get('name');
-        $webSeries->updated_by = $name;
+        $id = $request->session()->get('id');
+        $webSeries->updated_by = $id;
         $webSeries->save();
         $webSeries->artists()->sync($validatedData['artist_ids']);
         return redirect("episodelist")->with('success', 'Web series updated successfully');

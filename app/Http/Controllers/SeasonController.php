@@ -45,10 +45,10 @@ class SeasonController extends Controller
         $webSeries->season_title = $validatedData['title'];
         $webSeries->description = $validatedData['description'];
         $webid = session()->get('webid');
-        $name = $request->session()->get('name');
         $webSeries->web_id = $webid;
-        $webSeries->created_by = $name;
-        $webSeries->updated_by = $name;
+        $id = $request->session()->get('id');
+        $webSeries->created_by = $id;
+        $webSeries->updated_by = $id;       
         $webSeries->save();
         foreach ($validatedData['artist_ids'] as $artistId) {
             $seasonArtist = new SeasonArtist();
@@ -77,8 +77,8 @@ class SeasonController extends Controller
         $webSeries = Season::findOrFail($id);
         $webSeries->season_title = $validatedData['title'];
         $webSeries->description = $validatedData['description'];
-        $name = $request->session()->get('name');
-        $webSeries->updated_by = $name;
+        $id = $request->session()->get('id');
+        $webSeries->updated_by = $id;
         $webSeries->save();
         $webSeries->artists()->sync($validatedData['artist_ids']);
         return redirect("seasonlist")->with('success', 'Web series updated successfully');

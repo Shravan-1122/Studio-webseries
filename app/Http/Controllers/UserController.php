@@ -42,7 +42,7 @@ class UserController extends Controller
         if (($request->password != $user->password)) {
             return redirect()->back()->withErrors(['password' => 'The provided email or password is incorrect.']);
         }
-        $request->session()->put('name', $user->name);
+        $request->session()->put('id', $user->id);
         return redirect("weblist")->withSuccess('Login successful.');
     }
     public function logout(Request $request)
