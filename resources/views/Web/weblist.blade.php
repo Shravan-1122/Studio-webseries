@@ -59,6 +59,11 @@
 
 <body>
     <div class="container mt-5">
+    @if(session('error'))
+        <div class="alert alert-danger">
+            {{ session('error') }}
+        </div>
+        @endif
         <div class="menu">
             <button class="menu-btn"> Menu </button>
             <div class="menu-content">

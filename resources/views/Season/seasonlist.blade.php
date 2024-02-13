@@ -91,6 +91,7 @@
                     </tr>
                 </thead>
                 <tbody>
+                @foreach ($webartists as $post1)
                     @foreach ($posts as $post)
                     <tr>
 
@@ -103,6 +104,9 @@
                         <td>{{ $themeName }}</td>
 
                         <td>
+                        @foreach ($post1->artists as $artist)
+                            {{ $artist->name }},
+                            @endforeach
                             @foreach ($post->artists as $artist)
                             {{ $artist->name }},
                             @endforeach
@@ -116,6 +120,7 @@
                             <a href="{{ route('season.view', ['id' => $post->id]) }}" class="btn btn-primary">View</a>
                         </td>
                     </tr>
+                    @endforeach
                     @endforeach
                 </tbody>
             </table>
