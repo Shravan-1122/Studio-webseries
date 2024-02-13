@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -13,6 +14,7 @@
             min-height: calc(100% - 3.5rem);
             margin: 0 auto;
         }
+
         .menu {
             position: relative;
             display: inline-block;
@@ -88,6 +90,8 @@
                     </tr>
                 </thead>
                 <tbody>
+                    @foreach ($webarts as $webartist)
+                    @foreach ($seasonarts as $seasonartist)
                     @foreach ($posts as $post)
                     <tr>
                         <td>{{ $post->id }}</td>
@@ -97,6 +101,12 @@
                         <td>{{ $themeName }}</td>
 
                         <td>
+                            @foreach ($webartist->artists as $artist)
+                            {{ $artist->name }},
+                            @endforeach
+                            @foreach ($seasonartist->artists as $artist)
+                            {{ $artist->name }},
+                            @endforeach
                             @foreach ($post->artists as $artist)
                             {{ $artist->name }},
                             @endforeach
@@ -110,6 +120,8 @@
                             <a href="{{ route('episode.view', ['id' => $post->id]) }}" class="btn btn-primary">View</a>
                         </td>
                     </tr>
+                    @endforeach
+                    @endforeach
                     @endforeach
                 </tbody>
             </table>

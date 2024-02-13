@@ -40,11 +40,9 @@
             <div class="form-group">
     <label>Artists</label>
     <select name="artist_ids[]" class="form-control" multiple id="artistSelect">
-        @foreach ($artists as $id => $name)
-          
-            @php $isSelected = in_array($id, $selectedArtistIds) ? 'selected' : ''; @endphp
-            <option value="{{ $id }}" {{ $isSelected }}>{{ $name }}</option>
-        @endforeach
+    @foreach ($artists as $id => $name)
+        <option value="{{ $id }}">{{ $name }}</option>
+    @endforeach
     </select>
 </div>
             

@@ -14,7 +14,7 @@ class CreateSeasonsTable extends Migration
     public function up()
     {
         Schema::create('seasons', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id');
             $table->string('season_title');
             $table->text('description');
             $table->string('web_id');
@@ -22,7 +22,7 @@ class CreateSeasonsTable extends Migration
             $table->string('updated_by')->nullable();
             $table->boolean('active')->default(true);
             $table->timestamps();
-            
+
             $table->foreign('web_id')->references('id')->on('web_series');
         });
     }

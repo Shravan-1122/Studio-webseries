@@ -14,7 +14,7 @@ class CreateEpisodesTable extends Migration
     public function up()
     {
         Schema::create('episodes', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id');
             $table->string('episode_title');
             $table->text('description');
             $table->unsignedBigInteger('season_id');
@@ -23,7 +23,7 @@ class CreateEpisodesTable extends Migration
             $table->boolean('active')->default(true);
             $table->timestamps();
 
-            $table->foreign('season_id')->references('id')->on('seasons');
+            $table->foreign('season_id')->references('id')->on('seasons')->onDelete('cascade');
         });
     }
 
