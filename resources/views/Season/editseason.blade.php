@@ -23,7 +23,7 @@
     </style>
 </head>
 <body>
-<center> <h1>Edit Web Series</h1></center>
+<center> <h1>Edit Season</h1></center>
     <div class="container mt-5">
         <form method="post" id="edit_form" action="{{ route('season.update', $Season->id) }}">
             @csrf
