@@ -10,4 +10,9 @@ class Artist extends Model
     protected $fillable = [
         'name', 'age'
     ];
+
+    public function episodes()
+{
+    return $this->belongsToMany(Episode::class, 'episode_artist', 'artist_id', 'episode_id');
+}
 }

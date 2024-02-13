@@ -19,6 +19,11 @@ class Episode extends Model
     {
         return $this->belongsToMany(Artist::class, 'episode_artist', 'episode_id', 'artist_id');
     }
+    public function eartists()
+    {
+        return $this->belongsToMany(EpisodeArtist::class, 'episode_artist', 'episode_id', 'artist_id');
+    }
+    
     public function createdByUser()
     {
         return $this->belongsTo(User::class, 'created_by');

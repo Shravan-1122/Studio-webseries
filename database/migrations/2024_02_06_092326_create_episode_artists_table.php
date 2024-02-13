@@ -19,7 +19,7 @@ class CreateEpisodeArtistsTable extends Migration
             $table->unsignedBigInteger('artist_id');
             $table->timestamps();
 
-            $table->foreign('episode_id')->references('id')->on('episodes');
+            $table->foreign('episode_id')->references('id')->on('episodes')->onDelete('cascade');
             $table->foreign('artist_id')->references('id')->on('artists');
         });
     }

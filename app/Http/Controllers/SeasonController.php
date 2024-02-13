@@ -10,6 +10,7 @@ use App\Models\WebArtist;
 use App\Models\SeasonArtist;
 use App\Models\Season;
 use App\Models\Episode;
+use App\Models\EpisodeArtist;
 use Illuminate\Support\Facades\DB;
 
 class SeasonController extends Controller
@@ -119,8 +120,8 @@ class SeasonController extends Controller
         if ($web) {
             $season = Season::findOrFail($id);
             $season->artists()->detach();
-            $season->episodes()->delete();
             $season->delete();
+            $season->episodes()->delete();
             return redirect()->route('season.list')->with('success', 'Web series deleted successfully.');
         } else {
             return redirect()->route('web.list')->with('error', 'Web series or season not found.');
