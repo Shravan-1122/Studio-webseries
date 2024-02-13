@@ -40,7 +40,7 @@ class WebseriesController extends Controller
         $webSeries->theme_id = $validatedData['theme_id'];
         $webSeries->status = 'active';
         $webSeries->active = 1;
-        $id = $request->session()->get('id');        
+        $id = $request->session()->get('id');
         $webSeries->created_by = $id;
         $webSeries->updated_by = $id;
         $webSeries->save();
@@ -53,19 +53,17 @@ class WebseriesController extends Controller
         return redirect("weblist")->with('success', 'Web series added successfully');
     }
     public function edit($id)
-    { 
+    {
         $web = Series::where('id', $id)->where('active', 1)->first();
-        if($web){
-        $webSeries = Series::findOrFail($id);
-        $themes = Theme::pluck('title', 'id') ?? [];
-        $artists = Artist::pluck('name', 'id') ?? [];
-        $selectedArtistIds = WebArtist::where('web_id', '=', $id)->pluck('artist_id')->toArray();
-        return view('web/editweb', compact('webSeries', 'themes', 'artists', 'selectedArtistIds'));
-    }
-    else {
-    
-        return redirect()->route('web.list')->with('error', 'Web series not found.');
-    }
+        if ($web) {
+            $webSeries = Series::findOrFail($id);
+            $themes = Theme::pluck('title', 'id') ?? [];
+            $artists = Artist::pluck('name', 'id') ?? [];
+            $selectedArtistIds = WebArtist::where('web_id', '=', $id)->pluck('artist_id')->toArray();
+            return view('web/editweb', compact('webSeries', 'themes', 'artists', 'selectedArtistIds'));
+        } else {
+            return redirect()->route('web.list')->with('error', 'Web series not found.');
+        }
     }
     public function update(Request $request, $id)
     {
@@ -86,7 +84,6 @@ class WebseriesController extends Controller
         $webSeries->artists()->sync($validatedData['artist_ids']);
         return redirect("weblist")->with('success', 'Web series updated successfully');
     }
-
     public function delete($id)
     {
         $webSeries = Series::findOrFail($id);
@@ -113,14 +110,12 @@ class WebseriesController extends Controller
     public function view(Request $request, $id)
     {
         $web = Series::where('id', $id)->where('active', 1)->first();
-        if($web){
-        $request->session()->put('webid', $id);    
-        return redirect()->route('season.list')->with('success', 'web series seasons open successfully.');
-    }
-    else {
-    
-        return redirect()->route('web.list')->with('error', 'Web series not found.');
-    }
+        if ($web) {
+            $request->session()->put('webid', $id);
+            return redirect()->route('season.list')->with('success', 'web series seasons open successfully.');
+        } else {
+            return redirect()->route('web.list')->with('error', 'Web series not found.');
+        }
     }
 
 }
