@@ -91,7 +91,7 @@ class SeasonController extends Controller
             $selectedArtistIds = SeasonArtist::where('season_id', '=', $id)->pluck('artist_id')->toArray();
             return view('Season/editseason', compact('Season', 'artists', 'selectedArtistIds'));
         } else {
-            return redirect()->route('web.list')->with('error', 'Web series not found.');
+            return redirect()->route('web.list')->with('error', 'Web series or season not found.');
         }
     }
 
@@ -123,7 +123,7 @@ class SeasonController extends Controller
             $season->delete();
             return redirect()->route('season.list')->with('success', 'Web series deleted successfully.');
         } else {
-            return redirect()->route('web.list')->with('error', 'Web series not found.');
+            return redirect()->route('web.list')->with('error', 'Web series or season not found.');
         }
     }
 
