@@ -7,6 +7,7 @@ use App\Http\Controllers\ThemeController;
 use App\Http\Controllers\WebSeriesController;
 use App\Http\Controllers\SeasonController;
 use App\Http\Controllers\EpisodeController;
+use App\Http\Controllers\Auth\LoginController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,7 +28,7 @@ Route::get('/register', [UserController::class, 'index'])->name('register');
 Route::post('/user', [UserController::class, 'store'])->name('UserController.store');
 Route::get('/login', [UserController::class, 'index2'])->name('login');
 Route::post('/userlogin', [UserController::class, 'login'])->name('UserController.login');
-Route::get('/dashboard', [UserController::class, 'dashboard']);
+
 Route::post('/showdetails', [UserController::class, 'userdetailsstore'])->name('UserController.userdetailsstore');
 Route::get('/logout', [UserController::class, 'logout'])->name('logout');
 
@@ -80,7 +81,16 @@ Route::get('/season/{id}/delete', [SeasonController::class, 'delete'])->name('se
 Route::get('/season/{id}/view', [SeasonController::class, 'view'])->name('season.view');
 
 
+//************************************************************************************************************************************* */
 
+
+Route::get('/adminlogin', [LoginController::class, 'showLoginForm']);
+Route::post('/adminlogin', [LoginController::class, 'login'])->name('login'); // Changed route name to 'adminlogin'
+Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
+Route::get('/dashboard', [LoginController::class, 'dashboard'])->name('dashboard');
+Route::post('/update-ustatus/{id}',  [LoginController::class, 'updatestatus'])->name('userupdateStatus');
+Route::get('/get-user-status/{id}', [LoginController::class, 'getStatus'])->name('getuserStatus');
+Route::post('/update-user-status/{id}', [LoginController::class, 'updateStatus'])->name('updateuserStatus');
 //************************************************************************************************************************************* */
 Route::get('/episodelist', [EpisodeController::class, 'index'])->name('episode.list');
 Route::get('/addepisode', [EpisodeController::class, 'add']);

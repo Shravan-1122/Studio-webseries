@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>Login Page</title>
+    <title>Laravel Add User With Validation Demo</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
     <style>
         .container {
@@ -58,71 +58,59 @@
 </head>
 
 <body>
-    <center><h1>Login Page</h1></center>
+<center> <h1>Login Page</h1></center>
 
     <div class="container mt-5">
-        <div class="text-right mb-3">
-            <a href="{{ route('register') }}" class="btn btn-primary">Click here to Register</a>
+    <div class="text-right mb-3">
+            <a href="http://127.0.0.1:8000/register" class="btn btn-primary">click here to Register</a>
         </div>
-       
-        <form method="post" id="loginForm" action="{{ route('UserController.login') }}">
+   
+        <form method="post" id="add_create" name="add_create" action="{{route('UserController.login')  }}">
             @csrf
-            
+           
             <div class="form-group">
                 <label>Email</label>
-                <input type="text" name="email" class="form-control">
+                <input type="text" name="email" class="form-control" >
+                
                 @error('email')
                 <span class="error">{{ $message }}</span>
                 @enderror
             </div>
             <div class="form-group">
                 <label>Password</label>
-                <input type="password" name="password" class="form-control">
+                <input type="password" name="password" class="form-control" >
                 @error('password')
                 <span class="error">{{ $message }}</span>
                 @enderror
             </div>
-            
-            @if ($errors->has('error'))
-            <div class="alert alert-danger">{{ $errors->first('error') }}</div>
-            @endif
-            
+           
             <div class="form-group">
                 <button type="submit" class="btn btn-primary btn-block">LOGIN</button>
             </div>
         </form>
     </div>
-    
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.2/jquery.validate.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.2/additional-methods.min.js"></script>
     <script>
-        $(document).ready(function () {
-            if ($("#loginForm").length > 0) {
-                $("#loginForm").validate({
-                    rules: {
-                        email: {
-                            required: true,
-                            maxlength: 60,
-                            email: true,
-                        },
-                        password: {
-                            required: true,
-                        },
+        if ($("#add_create").length > 0) {
+            $("#add_create").validate({
+                rules: {
+                    email: {
+                        required: true,
+                        maxlength: 60,
+                        email: true,
                     },
-                    messages: {
-                        email: {
-                            required: "Email is required.",
-                            email: "Please enter a valid email address.",
-                            maxlength: "The email should not exceed 60 characters.",
-                        },
-                        password: {
-                            required: "Password is required.",
-                        },
+                },
+                messages: {
+                    email: {
+                        required: "Email is required.",
+                        email: "It does not seem to be a valid email.",
+                        maxlength: "The email should be or equal to 60 chars.",
                     },
-                });
-            }
-        });
+                },
+            })
+        }
     </script>
 </body>
 

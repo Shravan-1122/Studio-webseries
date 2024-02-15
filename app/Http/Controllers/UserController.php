@@ -36,6 +36,10 @@ class UserController extends Controller
             'password' => 'required|max:255',
         ]);
         $user = User::where('email', $request->email)->first();
+
+       if ($user && $user->status == "inactive") {
+        return redirect()->back()->withErrors(['error' => 'Your account is inactive. Please contact the admin.']);
+    }
         if (!$user) {
             return redirect()->back()->withErrors(['email' => 'The provided email or password is incorrect.']);
         }
