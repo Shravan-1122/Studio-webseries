@@ -119,7 +119,7 @@
                             <td>
                                 <a href="{{ route('web.edit', ['id' => $post->id]) }}" class="btn btn-primary">Edit</a>
                                 <a href="#" class="btn btn-danger delete-btn" data-id="{{ $post->id }}">Delete</a>
-                                <a href="{{ route('web.view', ['id' => $post->id]) }}" class="btn btn-primary">View</a>
+                                <a href="{{ route('season.list', ['id' => $post->id]) }}" class="btn btn-primary">View</a>
                             </td>
                         </tr>
                         @endforeach

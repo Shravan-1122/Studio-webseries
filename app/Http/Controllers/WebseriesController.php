@@ -107,15 +107,6 @@ class WebseriesController extends Controller
         $post = Series::findOrFail($id);
         return response()->json(['status' => $post->status]);
     }
-    public function view(Request $request, $id)
-    {
-        $web = Series::where('id', $id)->where('active', 1)->first();
-        if ($web) {
-            $request->session()->put('webid', $id);
-            return redirect()->route('season.list')->with('success', 'web series seasons open successfully.');
-        } else {
-            return redirect()->route('web.list')->with('error', 'Web series not found.');
-        }
-    }
+   
 
 }

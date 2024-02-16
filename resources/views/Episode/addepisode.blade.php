@@ -27,7 +27,7 @@
     <div class="container mt-5">
         <form method="post" id="add_create" name="add_create" action="{{ route('episode.addepisode') }}">
             @csrf
-           
+            <input type="hidden" name="season_id" value="{{ $season_id }}">
             <div class="form-group">
                 <label>Title</label>
                 <input type="text" name="title" class="form-control" >

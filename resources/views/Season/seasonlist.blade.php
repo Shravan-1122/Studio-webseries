@@ -65,6 +65,7 @@
                 <a href="{{ route('web.list') }}"> Web Series List</a>
                 <a href="{{ route('StudioController.artistlist') }}">Artists</a>
                 <a href="{{ route('theme.list') }}">Themes</a>
+                <input type="hidden" name="web_id" value="{{ $webid }}">
             </div>
         </div>
         <div class="mt-3">
@@ -73,8 +74,8 @@
             </center>
 
             <div class="text-right mb-3">
-                <a href="http://127.0.0.1:8000/addseason" class="btn btn-primary">+Add Season</a>
-            </div>
+    <a href="http://127.0.0.1:8000/addseason?web_id={{ $webid }}" class="btn btn-primary">+Add Season</a>
+</div>
             <table class="table table-bordered" id="users-list">
                 <thead>
                     <tr class="table-warning">
@@ -117,7 +118,7 @@
                         <td>
                             <a href="{{ route('season.edit', ['id' => $post->id]) }}" class="btn btn-primary">Edit</a>
                             <a href="#" class="btn btn-danger delete-btn" data-id="{{ $post->id }}">Delete</a>
-                            <a href="{{ route('season.view', ['id' => $post->id]) }}" class="btn btn-primary">View</a>
+                            <a href="{{ route('episode.list', ['id' => $post->id]) }}" class="btn btn-primary">View</a>
                         </td>
                     </tr>
                     @endforeach

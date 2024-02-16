@@ -38,7 +38,7 @@
                 <input type="text" name="description" class="form-control" value="{{ $episode->description }}">
             </div>
 
-          
+           
 
             <div class="form-group">
                 <label>Artists</label>

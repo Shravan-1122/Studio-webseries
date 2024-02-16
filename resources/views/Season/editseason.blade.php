@@ -37,11 +37,6 @@
                 <label>Description</label>
                 <input type="text" name="description" class="form-control" value="{{ $Season->description }}">
             </div>
-
-
-
-           
-
             <div class="form-group">
     <label>Artists</label>
     <select name="artist_ids[]" class="form-control" multiple id="artistSelect">

@@ -65,6 +65,7 @@
                 <a href="{{ route('web.list') }}"> Web Series List</a>
                 <a href="{{ route('StudioController.artistlist') }}">Artists</a>
                 <a href="{{ route('theme.list') }}">Themes</a>
+                <input type="hidden" name="season_id" value="{{ $seasonid }}">
             </div>
         </div>
         <div class="mt-3">
@@ -73,7 +74,8 @@
             </center>
 
             <div class="text-right mb-3">
-                <a href="http://127.0.0.1:8000/addepisode" class="btn btn-primary"> +Add Episode</a>
+            <a href="http://127.0.0.1:8000/addepisode?season_id={{ $seasonid }}" class="btn btn-primary">+Add Episode</a>
+                <!-- <a href="http://127.0.0.1:8000/addepisode" class="btn btn-primary"> +Add Episode</a> -->
             </div>
             <table class="table table-bordered" id="users-list">
                 <thead>
