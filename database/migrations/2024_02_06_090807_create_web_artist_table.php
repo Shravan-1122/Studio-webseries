@@ -17,8 +17,8 @@ class CreateWebArtistTable extends Migration
             $table->id();
             $table->string('web_id');
             $table->unsignedBigInteger('artist_id');
-            $table->foreign('web_id')->references('id')->on('web_series');
-            $table->foreign('artist_id')->references('id')->on('artists');
+            $table->foreign('web_id')->references('id')->on('webseries');
+            $table->foreign('artist_id')->references('id')->on('artists')->onDelete('cascade');
             $table->timestamps();
         });
     }

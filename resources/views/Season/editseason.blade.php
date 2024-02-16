@@ -25,17 +25,17 @@
 <body>
 <center> <h1>Edit Season</h1></center>
     <div class="container mt-5">
-        <form method="post" id="edit_form" action="{{ route('season.update', $Season->id) }}">
+        <form method="post" id="edit_form" action="{{ route('season.update', $season->id) }}">
             @csrf
             @method('PUT')
            
             <div class="form-group">
                 <label>Title</label>
-                <input type="text" name="title" class="form-control" value="{{ $Season->season_title }}">
+                <input type="text" name="title" class="form-control" value="{{ $season->season_title }}">
             </div>
             <div class="form-group">
                 <label>Description</label>
-                <input type="text" name="description" class="form-control" value="{{ $Season->description }}">
+                <input type="text" name="description" class="form-control" value="{{ $season->description }}">
             </div>
             <div class="form-group">
     <label>Artists</label>

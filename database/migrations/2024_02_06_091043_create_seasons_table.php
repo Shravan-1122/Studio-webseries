@@ -23,7 +23,7 @@ class CreateSeasonsTable extends Migration
             $table->boolean('active')->default(true);
             $table->timestamps();
 
-            $table->foreign('web_id')->references('id')->on('web_series');
+            $table->foreign('web_id')->references('id')->on('webseries');
         });
     }
 
