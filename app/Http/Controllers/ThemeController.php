@@ -26,9 +26,9 @@ class ThemeController extends Controller
         ]);    
         $theme = Theme::create($storeData);
         if ($theme) {
-            return redirect("themelist")->with('success', 'Artist added successfully');
+            return redirect("themelist")->with('success', 'Theme added successfully');
         } else {
-            return back()->withInput()->with('error', 'Failed to add artist');
+            return back()->withInput()->with('error', 'Failed to add Theme');
         }
     }
     public function edit($id)
@@ -52,10 +52,14 @@ public function delete($id)
 {
     $artist = Theme::find($id);    
     if ($artist) {
+        try {
         $artist->delete();
-        return redirect()->route('theme.list')->with('success', 'Artist deleted successfully.');
+        return redirect()->route('theme.list')->with('success', 'Theme deleted successfully.');
+    } catch (\Exception $e) {
+        return redirect()->route('theme.list')->with('error', " you can't delete if the theme assigned to a web series  ");
+    }
     } else {
-        return redirect()->route('theme.list')->with('error', 'Failed to delete artist.');
+        return redirect()->route('theme.list')->with('error', 'Failed to delete Theme.');
     }
 }
 }

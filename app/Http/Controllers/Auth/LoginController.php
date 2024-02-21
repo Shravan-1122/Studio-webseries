@@ -31,26 +31,12 @@ class LoginController extends Controller
     {
         $email = $request->input('email');
         $password = $request->input('password');
-
-        // Query the database to find a user with the provided email
         $user = DB::table('admins')->where('email', $email)->first();
-    //   print_r($user);
-    //   exit;
-        // Check if a user with the provided email exists
         if ($user) {
-            // echo "hello2";
-            //     exit;
-            // Verify the password
             if ($user->password === $password) {
-                // Authentication passed...
-                // Redirect the user to the dashboard or any other page
-                // echo "hello";
-                // exit;
                 return redirect()->intended('/dashboard');
             }
         }
-
-        // If authentication fails, redirect back with an error message
         return back()->withErrors(['email' => 'Invalid credentials'])->withInput($request->only('email'));
     }
 
@@ -61,8 +47,6 @@ class LoginController extends Controller
      */
     public function logout()
     {
-        // Perform logout actions here if needed
-        // Redirect the user to the login page
         return redirect('/login');
     }
 
@@ -76,10 +60,8 @@ class LoginController extends Controller
     public function updatestatus(Request $request, $id)
     {
         $post = User::findOrFail($id);
-        // Update the status column instead of active column
-        $post->status = $request->status; // assuming the request contains 'status' parameter
+        $post->status = $request->status; 
         $post->save();
-    
         return response()->json(['success' => true, 'message' => 'Status updated successfully']);
     }
     
@@ -88,5 +70,4 @@ class LoginController extends Controller
         $post = User::findOrFail($id);
         return response()->json(['status' => $post->active]);
     }
-
 }
