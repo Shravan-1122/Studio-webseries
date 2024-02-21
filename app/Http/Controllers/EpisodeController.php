@@ -16,6 +16,7 @@ class EpisodeController extends Controller
 {
     public function index(Request $request)
     {
+        $seasonid=$request->id;
         $season = Season::findOrFail($request->id);
         $series = Series::findOrFail($season->web_id);
         $themeName = $series->theme->title;
